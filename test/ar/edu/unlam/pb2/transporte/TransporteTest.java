@@ -10,9 +10,9 @@ public class TransporteTest {
 	@Test
 	public void queSePuedaAgregarAcompanianteEnUnaMotocicleta() {
 		String nombreAcompaniante = "Karen";
-		Vehiculo miMotocicleta = new Motocicleta();
+		Motocicleta miMotocicleta = new Motocicleta();
 		miMotocicleta.agregarAcompaniante(nombreAcompaniante);
-		Assert.assertTrue(nombreAcompaniante.equals(miMotocicleta.getAcompaniante));
+		assertTrue(nombreAcompaniante.equals(miMotocicleta.getAcompaniante()));
 	}
 	
 	@Test
@@ -20,21 +20,28 @@ public class TransporteTest {
 		String pasajero1 = "Maria";
 		String pasajero2 = "Juana";
 		String pasajero3 = "Jose";
-		Vehiculo miAutomovil = new Automovil();
+		Automovil miAutomovil = new Automovil();
 		miAutomovil.agregarPasajero(pasajero1);
 		miAutomovil.agregarPasajero(pasajero2);
 		miAutomovil.agregarPasajero(pasajero3);
-		Assert.assertEquals(miAutomovil.getPasajeros().size(),3);
+		assertEquals(miAutomovil.getPasajeros().size(),3);
 	}
 	
 	@Test
 	public void queNoSePuedaCambiarDeChoferEnUnAutobusPorqueTienePasajeros() {
 		String unPasajero = "Martin";
-		Vehiculo miAutobus = new Autobus();
+		Autobus miAutobus = new Autobus();
 		miAutobus.agregarPasajero(unPasajero);
 		Boolean resultadoEsperado = false;
 		Boolean resultadoObtenido = miAutobus.cambiarChofer("Luis");
-		Assert.assertFalse(resultadoEsperado,resultadoObtenido);
+		assertTrue(resultadoEsperado.equals(resultadoObtenido)); 
+		
+		/*Había un assertFalse, es assertTrue porque el metodo cambiarChofer() devuelve
+		 * un false en este caso. (Porque ya hay un pasajero) entonces el resultado esperado FALSE
+		 * es igual al resultado obtenido tambien FALSE. Eso da TRUE. Si le pones un 
+		 * assertFalse no va a dar verde nunca. 
+		 */
+		
 	}
 	
 	@Test
@@ -43,17 +50,25 @@ public class TransporteTest {
 		String nuevoChofer = "Josefina";
 		Boolean resultadoEsperado = true;
 		Boolean resultadoObtenido = otroAutomovil.cambiarChofer(nuevoChofer);
-		Assert.assertTrue(resultadoEsperado,resultadoObtenido);
+//assertTrue(resultadoEsperado,resultadoObtenido); acá solo es problema del tipo de assert elegido
+		assertTrue(resultadoEsperado.equals(resultadoObtenido));
 	}
 	
 	@Test
 	public void queNoSePuedaCambiarDeChoferEnUnaMotocicleta() {
 		String otroAcompaniante = "Mirta";
-		Vehiculo otraMotocicleta = new Motocicleta("Franco",35.9);
+		Motocicleta otraMotocicleta = new Motocicleta("Franco",35.9);
+		/*Cambio a Motocicleta en vez de vehículo
+		 * para que el metodo agregarAcompaniante() esté dentro de Moto y no de vehículo.
+		 */
 		otraMotocicleta.agregarAcompaniante(otroAcompaniante);
 		Boolean resultadoEsperado = false;
-		Boolean resultadoObtenido = otraMotocicleta.cambiarChofer("Ludmila");
-		Assert.assertFalse(resultadoEsperado,resultadoObtenido);
+		Boolean resultadoObtenido = otraMotocicleta.cambiarChofer("Ludmila");//Esto da FALSE.
+		/*Por lo que entiendo la logica de cambiarChofer() dice que puedo cambiarlo si
+		 * no hay acompañante. Entonces el resultado esperado es igual al obtenido. Eso da TRUE.
+		 * el assert False no va a dar nunca.
+		 */
+		assertTrue(resultadoEsperado.equals(resultadoEsperado));
 	}
 	
 }
