@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Autobus extends Vehiculo {
 	private List<String> pasajeros = new ArrayList<String>();
+	/*puede hacerse el new acá pero en realidad es una instanciación y eso correspondería
+	 * al constructor. No está mal pero..yo lo hago de esa manera. 
+	 * 
+	 */
 
 	
 // constructores
