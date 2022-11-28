@@ -18,9 +18,9 @@ public class Motocicleta extends Vehiculo {
 	
 // metodos 
 	
-	public Boolean agregarAcompaniante(String nombreAcompaniante) {
+	public void agregarAcompaniante(String nombreAcompaniante) {
 			this.acompaniante=nombreAcompaniante;
-			return true;			
+					
 	}
 	
 	public void bajarAcompaniante() {
